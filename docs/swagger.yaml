@@ -1,0 +1,132 @@
+basePath: /
+definitions:
+  view.FileView:
+    properties:
+      name:
+        type: string
+      size:
+        type: string
+      type:
+        type: string
+      url:
+        type: string
+    type: object
+  view.Response:
+    properties:
+      message:
+        type: string
+      payload: {}
+      success:
+        type: boolean
+    type: object
+host: 127.0.0.1:5000
+info:
+  contact: {}
+  description: File API Service.
+  title: File Server
+  version: "1.0"
+paths:
+  /files:
+    post:
+      consumes:
+      - application/json
+      description: Create a new file
+      parameters:
+      - description: File
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            allOf:
+            - $ref: '#/definitions/view.Response'
+            - properties:
+                payload:
+                  $ref: '#/definitions/view.FileView'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.Response'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/view.Response'
+        "406":
+          description: Not Acceptable
+          schema:
+            $ref: '#/definitions/view.Response'
+        "413":
+          description: Request Entity Too Large
+          schema:
+            $ref: '#/definitions/view.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.Response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/view.Response'
+      security:
+      - JWT: []
+      tags:
+      - files
+  /files/user-files:
+    get:
+      consumes:
+      - application/json
+      description: Get user's files
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/view.Response'
+            - properties:
+                payload:
+                  items:
+                    $ref: '#/definitions/view.FileView'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/view.Response'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/view.Response'
+        "406":
+          description: Not Acceptable
+          schema:
+            $ref: '#/definitions/view.Response'
+        "413":
+          description: Request Entity Too Large
+          schema:
+            $ref: '#/definitions/view.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/view.Response'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/view.Response'
+      security:
+      - JWT: []
+      tags:
+      - files
+securityDefinitions:
+  JWT:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
