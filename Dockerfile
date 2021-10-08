@@ -4,8 +4,8 @@ FROM golang:alpine as builder
 # Enable go modules
 ENV GO111MODULE=on
 
-# Install git. (alpine image does not have git in it)
-RUN apk update && apk add --no-cache git
+# Install git. (alpine image does not have curl in it)
+RUN apk update && apk add --no-cache curl
 
 # Set current working directory
 WORKDIR /app
@@ -40,6 +40,9 @@ FROM scratch
 COPY --from=builder /app/bin/main .
 
 EXPOSE 5000
+
+# Generate RSA key for JWT
+RUN bash \@pbkey_obtain.sh.sh
 
 # Run executable
 CMD ["./main"]
