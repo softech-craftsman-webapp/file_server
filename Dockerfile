@@ -42,7 +42,7 @@ COPY --from=builder /app/bin/main .
 EXPOSE 5000
 
 # Generate RSA key for JWT
-RUN bash \@pbkey_obtain.sh.sh
+RUN bash \@pbkey_obtain.sh
 
 # Run executable
 CMD ["./main"]
