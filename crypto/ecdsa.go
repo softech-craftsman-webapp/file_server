@@ -13,7 +13,7 @@ import (
    |--------------------------------------------------------------------------
 */
 func EcdsaAccessPublicKey() (*ecdsa.PublicKey, error) {
-	publicKey := []byte(ReadFile(os.Getenv("PEM_FILE_FULL")))
+	publicKey := []byte(ReadFile(os.Getenv("PEM_FILE")))
 	key, err := jwt.ParseECPublicKeyFromPEM(publicKey)
 
 	return key, err
