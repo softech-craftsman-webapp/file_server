@@ -4,9 +4,6 @@ FROM golang:alpine as builder
 # Enable go modules
 ENV GO111MODULE=on
 
-# Install git. (alpine image does not have curl in it)
-# RUN apk update && apk add --no-cache curl
-
 # Set current working directory
 WORKDIR /app
 
@@ -25,8 +22,6 @@ RUN go mod download
 
 # Now, copy the source code
 COPY . .
-
-RUN ls -la
 
 # Build the application.
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ./bin/main .
