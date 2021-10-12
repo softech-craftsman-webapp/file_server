@@ -1,11 +1,6 @@
 #!/bin/sh
 
 # ===
-# Generate Docs
-# ===
-swag init --parseDependency --parseInternal
-
-# ===
 # Obtain a public key
 # ===
 mkdir -p keys
