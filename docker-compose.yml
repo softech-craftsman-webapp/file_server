@@ -12,6 +12,7 @@ services:
             - PORT=5000
             - HOSTNAME=file_server
             - PEM_FILE=/app/keys/public.pem
+            - BASE_PATH=/app
             
     nginx:
         image: nginx:alpine

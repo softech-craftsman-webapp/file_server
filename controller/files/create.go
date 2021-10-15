@@ -115,7 +115,7 @@ func Create(ctx echo.Context) error {
 	   | Destionation
 	   |--------------------------------------------------------------------------
 	*/
-	dst, err := os.Create(controller.STATIC_PATH + "/" + file.Filename)
+	dst, err := os.Create(os.Getenv("BASE_PATH") + "/" + controller.STATIC_PATH + "/" + file.Filename)
 
 	if err != nil {
 		resp := &view.Response{

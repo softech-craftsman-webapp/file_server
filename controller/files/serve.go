@@ -8,6 +8,7 @@ import (
 	view "file_server/view"
 	"fmt"
 	"net/http"
+	"os"
 	"path"
 
 	"github.com/labstack/echo/v4"
@@ -26,7 +27,7 @@ func ServeFile(ctx echo.Context) error {
 
 	filename := ctx.Param("filename")
 	id := ctx.Param("id")
-	fileDir := path.Clean(fmt.Sprintf("%v/%v", controller.STATIC_PATH, filename))
+	fileDir := path.Clean(fmt.Sprintf("%v/%v", os.Getenv("BASE_PATH")+"/"+controller.STATIC_PATH, filename))
 
 	/*
 		|--------------------------------------------------------------------------
