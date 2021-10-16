@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
+	"time"
 
 	bootstrap "file_server/bootstrap"
 
@@ -21,10 +23,19 @@ import (
 // @in header
 // @name Authorization
 func main() {
+	// Load .env file
 	err := godotenv.Load(".env")
-
 	if err != nil {
 		fmt.Println(".env file is not imported, in production kindly ignore this message")
+	}
+
+	// Set timezone globally
+	if tz := os.Getenv("TZ"); tz != "" {
+		var err error
+		time.Local, err = time.LoadLocation(tz)
+		if err != nil {
+			log.Printf("error loading location '%s': %v\n", tz, err)
+		}
 	}
 
 	/*
