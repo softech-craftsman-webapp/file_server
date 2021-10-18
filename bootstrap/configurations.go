@@ -58,7 +58,7 @@ func InitConfigurations(app *echo.Echo) {
 	app.Use(middleware.Logger())
 
 	// Body Limit
-	app.Use(middleware.BodyLimit("5M"))
+	app.Use(middleware.BodyLimit("15M"))
 
 	// Gzip middleware
 	app.Use(middleware.GzipWithConfig(middleware.GzipConfig{

@@ -2,16 +2,17 @@ package files
 
 import (
 	"bytes"
-	config "file_server/config"
-	controller "file_server/controller"
-	helper "file_server/helper"
-	model "file_server/model"
-	view "file_server/view"
 	"fmt"
 	"io"
 	"net/http"
 	"os"
 	"path/filepath"
+
+	config "file_server/config"
+	controller "file_server/controller"
+	helper "file_server/helper"
+	model "file_server/model"
+	view "file_server/view"
 
 	"github.com/golang-jwt/jwt"
 	"github.com/google/uuid"
@@ -23,7 +24,7 @@ import (
 // @Description Create a new file
 // @Accept  json
 // @Produce  json
-// @Param   file formData file true  "File"
+// @Param   file formData file true "File"
 // @Success 201 {object} view.Response{payload=view.FileView}
 // @Failure 400,401,406,413,500 {object} view.Response
 // @Failure default {object} view.Response
@@ -35,8 +36,6 @@ func Create(ctx echo.Context) error {
 
 	// Source
 	file, err := ctx.FormFile("file")
-	file.Filename = fileID + filepath.Ext(file.Filename)
-
 	/*
 	   |--------------------------------------------------------------------------
 	   | Check if file is valid
@@ -51,6 +50,8 @@ func Create(ctx echo.Context) error {
 
 		return view.ApiView(http.StatusBadRequest, ctx, resp)
 	}
+
+	file.Filename = fileID + filepath.Ext(file.Filename)
 
 	/*
 	   |--------------------------------------------------------------------------

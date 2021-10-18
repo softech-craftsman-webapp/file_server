@@ -1,7 +1,7 @@
 package controller
 
-const STATIC_PATH = "files"             // folder name
-const MAX_UPLOAD_SIZE = 1024 * 1024 * 5 // 5 MB
+const STATIC_PATH = "files"              // folder name
+const MAX_UPLOAD_SIZE = 1024 * 1024 * 15 // 15 MB
 
 var MIME_TYPES = []string{
 	"image/jpeg",
