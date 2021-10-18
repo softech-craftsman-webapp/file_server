@@ -23,7 +23,7 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/files": {
+        "/files/upload": {
             "post": {
                 "security": [
                     {

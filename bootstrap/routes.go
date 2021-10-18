@@ -6,6 +6,7 @@ import (
 	files "file_server/controller/files"
 	_ "file_server/docs"
 	helper "file_server/helper"
+	"os"
 
 	"github.com/go-playground/validator"
 	"github.com/labstack/echo/v4"
@@ -18,7 +19,7 @@ import (
 	|--------------------------------------------------------------------------
 */
 func InitRoutes(app *echo.Echo) {
-	helper.MakeDirectoryIfNotExists("./" + controller.STATIC_PATH)
+	helper.MakeDirectoryIfNotExists(os.Getenv("BASE_PATH") + "/" + controller.STATIC_PATH)
 
 	// Access, Refresh Application Routes
 	access_route := config.Guard(app)
@@ -31,7 +32,7 @@ func InitRoutes(app *echo.Echo) {
 	app.GET("/openapi", controller.SwaggerRedirect)
 
 	// Files Controller
-	access_route.POST("/files", files.Create)
+	access_route.POST("/files/upload", files.Create)
 	app.GET("/files/:id/:filename", files.ServeFile)
 	access_route.GET("/files/user-files", files.GetUserFiles)
 }

@@ -27,7 +27,7 @@ import (
 // @Success 201 {object} view.Response{payload=view.FileView}
 // @Failure 400,401,406,413,500 {object} view.Response
 // @Failure default {object} view.Response
-// @Router /files [post]
+// @Router /files/upload [post]
 // @Security JWT
 func Create(ctx echo.Context) error {
 	fileID := uuid.New().String()
