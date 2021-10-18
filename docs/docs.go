@@ -17,7 +17,11 @@ var doc = `{
     "info": {
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
-        "contact": {},
+        "contact": {
+            "name": "Emin Muhammadi",
+            "url": "https://github.com/softech-craftsman-webapp/file_server",
+            "email": "admin@hiringo.tech"
+        },
         "version": "{{.Version}}"
     },
     "host": "{{.Host}}",
@@ -238,7 +242,7 @@ type swaggerInfo struct {
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = swaggerInfo{
 	Version:     "1.0",
-	Host:        "https://storage.hiringo.tech",
+	Host:        "storage.hiringo.tech",
 	BasePath:    "/",
 	Schemes:     []string{},
 	Title:       "File Server",
