@@ -22,5 +22,5 @@ vendor/
 keys/
 
 # Static Files
-static/
-static/*
+files/
+files/*

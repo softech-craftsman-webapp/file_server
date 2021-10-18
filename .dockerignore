@@ -10,4 +10,5 @@ Dockerfile
 *.dylib
 *.test
 *.out
+files/
 vendor/
